@@ -317,17 +317,16 @@ public class MechanicShop{
 		int mechID;
 		int mechYearsExp; 
 
-		String userInfo;
-		Scanner inss = new Scanner(userInfo);
+		Scanner scnr = new Scanner(System.in);
 
 		System.out.println("Enter the mechanic first name: ");
-		mechFirstName = inss.next();
+		mechFirstName = scnr.next();
 		System.out.println("Enter the mechanic last name: ");
-		mechLastName = inss.next();
+		mechLastName = scnr.next();
 		System.out.println("Enter the mechanic id: ");
-		mechID = inss.nextInt();
+		mechID = scnr.nextInt();
 		System.out.println("Enter the mechanic's years of experience: ");
-		mechYearsExp = inss.nextInt();
+		mechYearsExp = scnr.nextInt();
 
 		//	Testing code to make sure it reading in input:
 		System.out.println("First name: " + mechFirstName);
