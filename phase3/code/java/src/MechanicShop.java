@@ -318,7 +318,7 @@ public class MechanicShop{
 		int mechYearsExp; 
 
 		String userInfo;
-		Scanner inss new Scanner(userInfo);
+		Scanner inss = new Scanner(userInfo);
 
 		System.out.println("Enter the mechanic first name: ");
 		mechFirstName = inss.next();
