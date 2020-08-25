@@ -304,44 +304,44 @@ public class MechanicShop{
 		return input;
 	}//end readChoice
 	
-	public static void AddCustomer(MechanicShop esql){//1
+	public static void AddCustomer(MechanicShop esql){//1  Ted
 		
 	}
 	
-	public static void AddMechanic(MechanicShop esql){//2
+	public static void AddMechanic(MechanicShop esql){//2 Lindsey
 		
 	}
 	
-	public static void AddCar(MechanicShop esql){//3
+	public static void AddCar(MechanicShop esql){//3 Lindsey
 		
 	}
 	
-	public static void InsertServiceRequest(MechanicShop esql){//4
+	public static void InsertServiceRequest(MechanicShop esql){//4 Lindsey
 		
 	}
 	
-	public static void CloseServiceRequest(MechanicShop esql) throws Exception{//5
+	public static void CloseServiceRequest(MechanicShop esql) throws Exception{//5 Ted
 		
 	}
 	
-	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
+	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6 Ted
 		
 	}
 	
-	public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
+	public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7 Ted
 		
 	}
 	
-	public static void ListCarsBefore1995With50000Milles(MechanicShop esql){//8
+	public static void ListCarsBefore1995With50000Milles(MechanicShop esql){//8 Ted
 		
 	}
 	
-	public static void ListKCarsWithTheMostServices(MechanicShop esql){//9
+	public static void ListKCarsWithTheMostServices(MechanicShop esql){//9 Lindsey
 		//
 		
 	}
 	
-	public static void ListCustomersInDescendingOrderOfTheirTotalBill(MechanicShop esql){//9
+	public static void ListCustomersInDescendingOrderOfTheirTotalBill(MechanicShop esql){// 10 Lindsey
 		//
 		
 	}
