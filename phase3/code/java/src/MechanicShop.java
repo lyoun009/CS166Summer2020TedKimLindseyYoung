@@ -323,11 +323,11 @@ public class MechanicShop{
 		System.out.println("Enter the mechanic first name: ");
 		mechFirstName = inss.next();
 		System.out.println("Enter the mechanic last name: ");
-		mechFirstName = inss.next();
+		mechLastName = inss.next();
 		System.out.println("Enter the mechanic id: ");
-		mechFirstName = inss.nextInt();
+		mechID = inss.nextInt();
 		System.out.println("Enter the mechanic's years of experience: ");
-		mechFirstName = inss.nextInt();
+		mechYearsExp = inss.nextInt();
 
 		//	Testing code to make sure it reading in input:
 		System.out.println("First name: " + mechFirstName);
