@@ -24,6 +24,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.ArrayList;
 
+import java.util.Scanner;
 /**
  * This class defines a simple embedded SQL utility class that is designed to
  * work with PostgreSQL JDBC drivers.
@@ -302,6 +303,8 @@ public class MechanicShop{
 			}//end try
 		}while (true);
 		return input;
+
+
 	}//end readChoice
 	
 	public static void AddCustomer(MechanicShop esql){//1  Ted
@@ -309,7 +312,29 @@ public class MechanicShop{
 	}
 	
 	public static void AddMechanic(MechanicShop esql){//2 Lindsey
-		
+		String mechFirstName;
+		String mechLastName;
+		int mechID;
+		int mechYearsExp; 
+
+		String userInfo;
+		Scanner inss new Scanner(userInfo);
+
+		System.out.println("Enter the mechanic first name: ");
+		mechFirstName = inss.next();
+		System.out.println("Enter the mechanic last name: ");
+		mechFirstName = inss.next();
+		System.out.println("Enter the mechanic id: ");
+		mechFirstName = inss.nextInt();
+		System.out.println("Enter the mechanic's years of experience: ")
+		mechFirstName = inss.nextInt();
+
+		//	Testing code to make sure it reading in input:
+		System.out.println("First name: " + mechFirstName);
+		System.out.println("Last name: " + mechLastName);
+		System.out.println("Mechanic ID: " + mechID);
+		System.out.println("Years experience: " + mechYearsExp);
+
 	}
 	
 	public static void AddCar(MechanicShop esql){//3 Lindsey
