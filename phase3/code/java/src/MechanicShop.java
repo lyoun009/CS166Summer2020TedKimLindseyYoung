@@ -336,8 +336,8 @@ public class MechanicShop{
 		System.out.println("Years experience: " + mechExp);
 		
 		// Putting values into database: 
-		esql.executeUpdate("UPDATE TABLE MECHANIC (id, fname, lname, experience) 
-							VALUES ("  + mechID + "," + mechFirstName + "," + mechLastName + "," + mechExp + ");"  );
+		esql.executeUpdate("UPDATE TABLE MECHANIC (id, fname, lname, experience) VALUES ("  
+		+ mechID + ", " + mechFirstName + ", " + mechLastName + ", " + mechExp + ");"  );
 		
 		// Check if values got inputted into DB
 		String test = "SELECT * FROM MECHANIC;";
