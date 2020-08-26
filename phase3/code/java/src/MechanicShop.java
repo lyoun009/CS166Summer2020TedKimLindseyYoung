@@ -337,8 +337,8 @@ public class MechanicShop{
 		
 		// Putting values into database: 
 		try{
-			esql.executeUpdate("INSERT INTO MECHANIC (id, fname, lname, experience) VALUES ("  
-			+ mechID + ", " + mechFirstName + ", " + mechLastName + ", " + mechExp + ");"  );
+			esql.executeUpdate("INSERT INTO MECHANIC (id, fname, lname, experience) VALUES 
+			(\'" + mechID + "\', \'" + mechFirstName + "\', \'" + mechLastName + "\', \'" + mechExp + "\');"  );
 		}
 		catch (Exception e){
 			System.err.println (e.getMessage());
@@ -347,7 +347,7 @@ public class MechanicShop{
 		
 		// Check if values got inputted into DB
 		try{
-			String test = "SELECT * FROM MECHANIC;";
+			String test = "SELECT * FROM MECHANIC";
 			esql.executeQueryAndPrintResult(test);
 		}
 		catch (Exception e){
