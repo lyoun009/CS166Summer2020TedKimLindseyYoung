@@ -347,7 +347,7 @@ public class MechanicShop{
 		
 		// Check if values got inputted into DB
 		try{
-			String test = "SELECT * FROM MECHANIC";
+			String test = "SELECT * FROM MECHANIC WHERE id = '" + mechID + "';" ;
 			esql.executeQueryAndPrintResult(test);
 		}
 		catch (Exception e){
