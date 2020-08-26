@@ -312,6 +312,9 @@ public class MechanicShop{
 	}
 	
 	public static void AddMechanic(MechanicShop esql){//2 Lindsey
+		// has basic adding to db functionality
+		// still need to implement checking valid parameters part
+		
 		String mechFirstName;
 		String mechLastName;
 		int mechID;
@@ -330,10 +333,10 @@ public class MechanicShop{
 		mechExp = scnr.nextInt();
 
 		//	Testing code to make sure it is reading in input correctly:
-		System.out.println("First name: " + mechFirstName);
-		System.out.println("Last name: " + mechLastName);
-		System.out.println("Mechanic ID: " + mechID);
-		System.out.println("Years experience: " + mechExp);
+		// System.out.println("First name: " + mechFirstName);
+		// System.out.println("Last name: " + mechLastName);
+		// System.out.println("Mechanic ID: " + mechID);
+		// System.out.println("Years experience: " + mechExp);
 		
 		// Putting values into database: 
 		try{
