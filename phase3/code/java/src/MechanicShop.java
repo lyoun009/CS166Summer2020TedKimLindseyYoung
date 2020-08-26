@@ -315,24 +315,33 @@ public class MechanicShop{
 		String mechFirstName;
 		String mechLastName;
 		int mechID;
-		int mechYearsExp; 
-
+		int mechExp; 
+		
+		// Reading in input using Scanner
 		Scanner scnr = new Scanner(System.in);
 
-		System.out.println("Enter the mechanic first name: ");
+		System.out.print("Enter the mechanic first name: ");
 		mechFirstName = scnr.next();
-		System.out.println("Enter the mechanic last name: ");
+		System.out.print("Enter the mechanic last name: ");
 		mechLastName = scnr.next();
-		System.out.println("Enter the mechanic id: ");
+		System.out.print("Enter the mechanic id: ");
 		mechID = scnr.nextInt();
-		System.out.println("Enter the mechanic's years of experience: ");
-		mechYearsExp = scnr.nextInt();
+		System.out.print("Enter the mechanic's years of experience: ");
+		mechExp = scnr.nextInt();
 
-		//	Testing code to make sure it reading in input:
+		//	Testing code to make sure it is reading in input correctly:
 		System.out.println("First name: " + mechFirstName);
 		System.out.println("Last name: " + mechLastName);
 		System.out.println("Mechanic ID: " + mechID);
-		System.out.println("Years experience: " + mechYearsExp);
+		System.out.println("Years experience: " + mechExp);
+		
+		// Putting values into database: 
+		esql.executeUpdate("UPDATE TABLE MECHANIC (id, fname, lname, experience) 
+							VALUES ("  + mechID + "," + mechFirstName + "," + mechLastName + "," + mechExp + ");"  ;
+		
+		// Check if values got inputted into DB
+		String test = "SELECT * FROM MECHANIC;";
+		esql.executeQueryAndPrintResult(test);
 
 	}
 	
