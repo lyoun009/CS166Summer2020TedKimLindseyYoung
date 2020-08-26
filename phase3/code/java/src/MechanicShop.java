@@ -340,7 +340,7 @@ public class MechanicShop{
 			esql.executeUpdate("INSERT INTO MECHANIC (id, fname, lname, experience) VALUES ("  
 			+ mechID + ", " + mechFirstName + ", " + mechLastName + ", " + mechExp + ");"  );
 		}
-		catch (exception e){
+		catch (Exception e){
 			System.err.println (e.getMessage());
 		}
 			
@@ -350,7 +350,7 @@ public class MechanicShop{
 			String test = "SELECT * FROM MECHANIC;";
 			esql.executeQueryAndPrintResult(test);
 		}
-		catch (exception e){
+		catch (Exception e){
 			System.err.println (e.getMessage());
 		}
 		
