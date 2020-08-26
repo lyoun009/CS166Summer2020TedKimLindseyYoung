@@ -336,12 +336,24 @@ public class MechanicShop{
 		System.out.println("Years experience: " + mechExp);
 		
 		// Putting values into database: 
-		esql.executeUpdate("INSERT INTO MECHANIC (id, fname, lname, experience) VALUES ("  
-		+ mechID + ", " + mechFirstName + ", " + mechLastName + ", " + mechExp + ");"  );
+		try{
+			esql.executeUpdate("INSERT INTO MECHANIC (id, fname, lname, experience) VALUES ("  
+			+ mechID + ", " + mechFirstName + ", " + mechLastName + ", " + mechExp + ");"  );
+		}
+		catch (exception e){
+			System.err.println (e.getMessage());
+		}
+			
 		
 		// Check if values got inputted into DB
-		String test = "SELECT * FROM MECHANIC;";
-		esql.executeQueryAndPrintResult(test);
+		try{
+			String test = "SELECT * FROM MECHANIC;";
+			esql.executeQueryAndPrintResult(test);
+		}
+		catch (exception e){
+			System.err.println (e.getMessage());
+		}
+		
 
 	}
 	
