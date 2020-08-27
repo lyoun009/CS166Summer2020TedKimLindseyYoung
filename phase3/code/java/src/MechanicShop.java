@@ -365,7 +365,7 @@ public class MechanicShop{
 			try{
 				String qs;
 				List<List<String>> x;
-				qs = String.format("SELECT M.id FROM Customer M");
+				qs = String.format("SELECT M.id FROM Mechanic M");
 				x = esql.executeQueryAndReturnResult(qs);
 				mechID = x.size() + 1;
 			}
@@ -378,7 +378,7 @@ public class MechanicShop{
 			while(true){
 				try{
 					System.out.print("Enter the mechanic's years of experience: ");
-					mechExp = scnr.nextInt();
+					mechExp = scnr.nextInt(); 
 					if(mechExp < 0){
 						throw new Exception("Years of experience cannot be a negative number.");
 					}
@@ -417,11 +417,36 @@ public class MechanicShop{
 		int carYear; 
 		
 		// Reading in input using Scanner
-		boolean keepAsking = true;
 		Scanner scnr = new Scanner(System.in);
 
-		System.out.print("Enter the car vin: ");
-		carVin = scnr.next();
+		while(true){
+			try{
+				System.out.print("Enter the car vin: ");
+				carVin = scnr.next();
+				if(carVin.length() == 0 || carVin.length() > 16){
+					throw new Exception("Invalid VIN, can't be null and must be less than 16 characters.");
+				}
+				break;
+			}
+			catch(Exception e){
+				System.out.println(e.getMessage());
+			}
+		}
+		
+		while(true){
+			try{
+				System.out.print("Enter the car make: ");
+				carMake = scnr.next();
+				if(carVin.length() == 0 || carVin.length() > 16){
+					throw new Exception("Invalid input. Cannot exceed 32 characters!");
+				}
+				break;
+			}
+			catch(Exception e){
+				System.out.println(e.getMessage());
+			}
+
+		}
 		System.out.print("Enter the car make: ");
 		carMake = scnr.next();
 		System.out.print("Enter the car model: ");
@@ -534,6 +559,7 @@ public class MechanicShop{
 						ownID = scnr.nextInt();
 						try{
 							test = esql.executeQuery("SELECT ownership_id, vin, make, model, year FROM OWNS o, Customer cust, Car cc WHERE o.customer_id = cust.id AND o.car_vin = cc.vin AND cust.id = " + custID + "AND ownership_id = " + ownID + ";");
+						    
 						}
 						catch (Exception e){
 							System.err.println (e.getMessage());
@@ -541,7 +567,31 @@ public class MechanicShop{
 						if(test == 1){//valid car selection
 							// Initiate the service request here
 							System.out.println("Initiating service request...");
-							// TODO: FIXME
+
+							// rid INTEGER NOT NULL, // done
+							// customer_id INTEGER NOT NULL, // custID
+							// car_vin VARCHAR(16) NOT NULL, //
+							// date DATE NOT NULL,
+							// odometer _PINTEGER NOT NULL,
+							// complain TEXT
+
+							try{
+								String qs;
+								List<List<String>> x;
+								int setRid;
+								qs = String.format("SELECT s.rid FROM Service_request s");
+								x = esql.executeQueryAndReturnResult(qs);
+								setRid = x.size() + 1;
+							}
+							catch(Exception e){
+								System.err.println (e.getMessage());
+							}
+
+							
+
+
+
+
 							keepAsking = false;
 							break;
 						}
