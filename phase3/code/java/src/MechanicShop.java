@@ -315,6 +315,17 @@ public class MechanicShop{
 		// has basic adding to db functionality
 		// still need to implement checking valid parameters part 
 		// aka error handling if wrong input
+
+		int testId;
+		try{
+			testId =  esql.getCurrSeqVal("Select id From Mechanic;");
+			System.out.println("Test id: " + testId);
+		}
+		catch (Exception e){
+			System.err.println (e.getMessage());
+		}
+		
+
 		
 		String mechFirstName;
 		String mechLastName;
