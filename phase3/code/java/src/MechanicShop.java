@@ -326,7 +326,7 @@ public class MechanicShop{
 						throw new Exception("First name cannot exceed 32 characters.");
 					}
 					else if (tfN.length() <= 0) {
-						throw new Exceptio("First name cannot be null.")
+						throw new Exception("First name cannot be null.");
 					}
 				}
 				catch (Exception exc) {
@@ -343,7 +343,7 @@ public class MechanicShop{
 						throw new Exception("Last name cannot exceed 32 characters.");
 					}
 					else if (tlN.length() <= 0) {
-						throw new Exceptio("Last name cannot be null.")
+						throw new Exception("Last name cannot be null.");
 					}
 				}
 				catch (Exception exc) {
@@ -360,7 +360,7 @@ public class MechanicShop{
 						throw new Exception("Phone number cannot exceed 10 characters.");
 					}
 					else if (tpN.length() <= 0) {
-						throw new Exceptio("Phone number cannot be null.")
+						throw new Exception("Phone number cannot be null.");
 					}
 				}
 				catch (Exception exc) {
