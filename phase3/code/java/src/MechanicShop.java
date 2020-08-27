@@ -587,12 +587,13 @@ public class MechanicShop{
 							// getting VIN
 							
 								String qs2;
-								List<List<String>> setVin;
-								//int setVin;
+								List<List<String>> y;
+								int setVin;
 								qs2 = String.format("SELECT o.car_vin FROM Owns o WHERE o.ownership_id = '" + ownID + "';");
-								setVin = esql.executeQueryAndReturnResult(qs2);
-								setVin = setVin.subList(1, setVin.size()-1);
+								y = esql.executeQueryAndReturnResult(qs2);
+								setVin = y.size() +1;
 								System.out.println(setVin);
+								System.out.println(y);
 							
 							
 							// getting Date
