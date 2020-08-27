@@ -591,7 +591,7 @@ public class MechanicShop{
 								String qs;
 								List<List<String>> x;
 								int setRid;
-								qs = String.format("SELECT c.vin FROM Owns o WHERE o.ownership_id = '" + ownID + "';");
+								qs = String.format("SELECT o.car_vin FROM Owns o WHERE o.ownership_id = '" + ownID + "';");
 								x = esql.executeQueryAndReturnResult(qs);
 								System.out.println(x);
 							}
