@@ -605,10 +605,11 @@ public class MechanicShop{
 							int odo = 10;
 								 try{
 									System.out.print("Enter odometer reading: ");
-									 //odo = scnr.nextInt();
+									 odo = scnr.nextInt();
 									if(odo <= 0){
 										throw new Exception("Odometer can't be null.");
 									}
+									break;
 									
 								 }
 								 catch(Exception e){
