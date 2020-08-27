@@ -345,6 +345,9 @@ public class MechanicShop{
 			try{
 				esql.executeUpdate("INSERT INTO MECHANIC (id, fname, lname, experience) VALUES (" 
 				+ mechID + ", '" + mechFirstName + "', '" + mechLastName + "', " + mechExp + ");"  );
+				String test = "SELECT * FROM MECHANIC WHERE id = '" + mechID + "';" ;
+				esql.executeQueryAndPrintResult(test);
+				break;
 			}
 			catch (Exception e){
 				System.err.println (e.getMessage());
@@ -352,13 +355,12 @@ public class MechanicShop{
 				
 			
 			// Check if values got inputted into DB
-			try{
-				String test = "SELECT * FROM MECHANIC WHERE id = '" + mechID + "';" ;
-				esql.executeQueryAndPrintResult(test);
-			}
-			catch (Exception e){
-				System.err.println (e.getMessage());
-			}
+			// try{
+				
+			// }
+			// catch (Exception e){
+			// 	System.err.println (e.getMessage());
+			// }
 		}
 
 
