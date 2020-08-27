@@ -602,32 +602,23 @@ public class MechanicShop{
 								// z = esql.executeQueryAndReturnResult(qs);
 
 							// getting odometer
-							int odo = 10;
-								 try{
+							int odo = 0;
+							String comp = "";
+								 
 									System.out.print("Enter odometer reading: ");
 									 odo = scnr.nextInt();
 									if(odo <= 0){
 										throw new Exception("Odometer can't be null.");
 									}
-									break;
+									System.out.print("Enter complaint: ");
+									//comp = scnr.next();
+									if(comp.length() >= 1000){
+										throw new Exception("Too long.");
+									}
 									
-								 }
-								 catch(Exception e){
-									System.err.println (e.getMessage());
-								 }
-							
-							// getting complaint
-								 String comp = "";
-								//  try{
-								// 	System.out.print("Enter complaint: ");
-								// 	//comp = scnr.next();
-								// 	if(comp.length() >= 1000){
-								// 		throw new Exception("Too long.");
-								// 	}
-								//  }
-								//  catch(Exception e){
-								// 	System.err.println (e.getMessage());
-								//  }
+									
+								
+								 
 									
 							
 							try{
