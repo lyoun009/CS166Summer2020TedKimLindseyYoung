@@ -437,7 +437,7 @@ public class MechanicShop{
 		System.out.println("Enter K number of cars: ");
 		k = scnr.nextInt();
 
-		String sqlCmd = "SELECT cc.make, cc.model, COUNT(*) AS num_serv_requests FROM CAR cc, Service_request s WHERE cc.vin = s.car_vin ORDER BY num_serv_requests desc LIMIT " + k + ";" ;
+		String sqlCmd = "SELECT cc.make, cc.model, COUNT(*) AS num_serv_requests FROM CAR cc, Service_request s WHERE cc.vin = s.car_vin GROUP BY cc.vin ORDER BY num_serv_requests desc LIMIT " + k + ";" ;
 		
 	
 		try{
