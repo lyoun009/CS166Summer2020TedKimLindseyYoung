@@ -331,6 +331,9 @@ public class MechanicShop{
 					if(mechFirstName.length() > 32){
 						throw new Exception("First name cannot exceed 32 characters.");
 					}
+					else if(mechFirstName.length() <= 0){
+						throw new Exception("First name cannot be null.");
+					}
 					break;
 				}
 				catch(Exception ex){
@@ -340,13 +343,44 @@ public class MechanicShop{
 
 			}
 
+			while(true){
+				try{
+					System.out.print("Enter the mechanic last name: ");
+					mechLastName = scnr.nextLine();
+					if(mechLastName.length() > 32){
+						throw new Exception("Last name cannot exceed 32 characters.");
+					}
+					else if(mechLastName.length() <= 0){
+						throw new Exception("Last name cannot be null.");
+					}
+					break;
+				}
+				catch(Exception ex){
+					System.out.println(ex.getMessage());
+					System.out.println("Try again.");
+				}
 
-			System.out.print("Enter the mechanic last name: ");
-			mechLastName = scnr.nextLine();
+			}
+			//FIXME: needs to handle id nums better
 			System.out.print("Enter the mechanic id: ");
 			mechID = scnr.nextInt();
-			System.out.print("Enter the mechanic's years of experience: ");
-			mechExp = scnr.nextInt();
+
+
+			while(true){
+				try{
+					System.out.print("Enter the mechanic's years of experience: ");
+					mechExp = scnr.nextInt();
+					if(mechExp < 0){
+						throw new Exception("Years of experience cannot be a negative number.");
+					}
+					break;
+				}
+				catch(Exception ex){
+					System.out.println(ex.getMessage());
+					System.out.println("Try again.");
+				}
+			}
+			
 			
 			// Putting values into database: 
 			try{
