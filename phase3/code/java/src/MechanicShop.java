@@ -596,29 +596,22 @@ public class MechanicShop{
 								System.out.println(setVin);
 								System.out.println(y);
 							
-							
-							// getting Date
-							
-								// String qs3;
-								// List<List<String>> z;
-								// int setDate;
-								// qs3 = String.format("SELECT CURRENT_DATE;");
-								// z = esql.executeQueryAndReturnResult(qs);
+						
 
 							// getting odometer
-							int odo = 0;
-							String comp = "";
-								 
-									System.out.print("Enter odometer reading: ");
-									 odo = scnr.nextInt();
-									if(odo <= 0){
-										throw new Exception("Odometer can't be null.");
-									}
-									System.out.print("Enter complaint: ");
-									//comp = scnr.next();
-									if(comp.length() >= 1000){
-										throw new Exception("Too long.");
-									}
+								int odo = 0;
+								System.out.print("Enter odometer reading: ");
+								odo = scnr.nextInt();
+								if(odo <= 0){
+									throw new Exception("Odometer can't be null.");
+								}
+							// getting complaint 	
+								String comp = "";
+								System.out.print("Enter complaint: ");
+								comp = scnr.next();
+								if(comp.length() >= 10000){
+									throw new Exception("Too long.");
+								}
 									
 									
 								
@@ -626,6 +619,7 @@ public class MechanicShop{
 									
 							
 							try{
+								System.out.println("\n");
 								sql = "INSERT INTO SERVICE_REQUEST (rid, customer_id, car_vin, date, odometer, complain) VALUES (" + setRid + ", " 
 								+ custID + ", '" + setVin + "', " + "CURRENT_DATE," + odo + ", '" + comp + "');";
 								esql.executeUpdate(sql);
