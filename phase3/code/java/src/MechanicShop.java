@@ -409,6 +409,17 @@ public class MechanicShop{
 		// ask for user to input the last name, read in input
 		System.out.print("Enter in the last name: ");
 		userInput = scnr.next();
+		int test;
+
+		// check if exists in table
+		try{
+			String check = "SELECT * FROM CUSTOMER WHERE lname= '" + userInput + "';" ;
+			test = esql.executeQuery(check);
+			System.out.println("Test val: " + test);
+		}
+		catch (Exception e){
+			System.err.println (e.getMessage());
+		}
 
 		// output all clients that match user's input
 		try{
@@ -464,6 +475,7 @@ public class MechanicShop{
 			System.err.println (e.getMessage());
 		}
 		
+	
 	}
 	
 	public static void ListCustomersInDescendingOrderOfTheirTotalBill(MechanicShop esql){// 10 Lindsey
