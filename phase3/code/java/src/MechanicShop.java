@@ -433,11 +433,31 @@ public class MechanicShop{
 				System.err.println (e.getMessage());
 			}
 			
-			
+			int custID = -1;
+
 			while(keepAsking){
-				int custID;
-				System.out.print("\n Enter in the id of customer you would like to select: ");
-				custID = scnr.nextInt();
+				boolean notValid = true;
+				while(notValid){
+					System.out.print("\n Enter in the id of customer you would like to select: ");
+					custID = scnr.nextInt();
+
+						//check if selection exists (is valid)
+					try{
+						test = esql.executeQuery("SELECT id, fname, lname FROM CUSTOMER WHERE lname = '" + userInput + "' AND id = " + custID + ";");
+					}
+					catch (Exception e){
+						System.err.println (e.getMessage());
+					}
+
+					if(test == 1){// means its valid customer id
+						notValid = false;
+					}
+					else{ // means its not a valid customer id
+						System.out.println("Invalid customer id. Please try again.");
+						notValid = true;
+					}
+
+				}
 
 				String getCars = "SELECT ownership_id, vin, make, model, year FROM OWNS o, Customer cust, Car cc WHERE o.customer_id = cust.id AND o.car_vin = cc.vin AND cust.id = " + custID + ";" ;
 				
@@ -451,6 +471,7 @@ public class MechanicShop{
 				
 				System.out.println("Test val: " + test); // for testing, comment out later
 				// if test is >= 1, means record(s) exists. 0 means doesnt exist in table
+
 				int ownID;
 				if(test >= 1){
 					while(true){
@@ -472,6 +493,7 @@ public class MechanicShop{
 							// Initiate the service request here
 							System.out.println("Initiating service request...");
 							// TODO: FIXME
+							keepAsking = false;
 							break;
 						}
 						else{// invalid car selection
