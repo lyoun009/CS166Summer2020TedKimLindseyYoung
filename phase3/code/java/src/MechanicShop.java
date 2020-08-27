@@ -591,6 +591,8 @@ public class MechanicShop{
 								//int setVin;
 								qs2 = String.format("SELECT o.car_vin FROM Owns o WHERE o.ownership_id = '" + ownID + "';");
 								setVin = esql.executeQueryAndReturnResult(qs2);
+								setVin = setVin.subList(1, setVin.size()-1);
+								System.out.println(setVin);
 							
 							
 							// getting Date
@@ -622,8 +624,8 @@ public class MechanicShop{
 									
 							
 							try{
-								sql = "INSERT INTO SERVICE_REQUEST (rid, customer_id, car_vin, date, odometer) VALUES (" + setRid + ", " 
-								+ custID + ", '" + setVin + "', " + "CURRENT_DATE," + odo + " );";
+								sql = "INSERT INTO SERVICE_REQUEST (rid, customer_id, car_vin, date, odometer, complain) VALUES (" + setRid + ", " 
+								+ custID + ", '" + setVin + "', " + "CURRENT_DATE," + odo + ", '" + comp + "');";
 								esql.executeUpdate(sql);
 								String t = "SELECT * FROM SERVICE_REQUEST WHERE rid = '" + setRid + "';" ;
 								esql.executeQueryAndPrintResult(t);
