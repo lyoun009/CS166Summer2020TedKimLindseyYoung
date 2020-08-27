@@ -338,7 +338,7 @@ public class MechanicShop{
 				}
 				catch(Exception ex){
 					System.out.println(ex.getMessage());
-					System.out.println("Try again.");
+					System.out.println("Please try again.");
 				}
 
 			}
@@ -357,11 +357,11 @@ public class MechanicShop{
 				}
 				catch(Exception ex){
 					System.out.println(ex.getMessage());
-					System.out.println("Try again.");
+					System.out.println("Please try again.");
 				}
 
 			}
-			//FIXME: needs to handle id nums better
+
 			try{
 				String qs;
 				List<List<String>> x;
@@ -372,8 +372,6 @@ public class MechanicShop{
 			catch(Exception e){
 				System.err.println (e.getMessage());
 			}
-			//System.out.print("Enter the mechanic id: ");
-			//mechID = scnr.nextInt();
 
 			while(true){
 				try{
@@ -386,18 +384,20 @@ public class MechanicShop{
 				}
 				catch(Exception ex){
 					System.out.println(ex.getMessage());
-					System.out.println("Try again.");
+					System.out.println("Please try again.");
 				}
 			}
 			
 			
 			// Putting values into database: 
 			try{
+				System.out.println("\nAdding new mechanic to database:");
 				esql.executeUpdate("INSERT INTO MECHANIC (id, fname, lname, experience) VALUES (" 
 				+ mechID + ", '" + mechFirstName + "', '" + mechLastName + "', " + mechExp + ");"  );
 				// This will output the newly entered data:
 				String test = "SELECT * FROM MECHANIC WHERE id = '" + mechID + "';" ;
 				esql.executeQueryAndPrintResult(test);
+				System.out.println("Done adding mechanic. Returning to MAIN MENU...");
 				
 			}
 			catch (Exception e){
@@ -447,12 +447,14 @@ public class MechanicShop{
 				
 				
 				// input values into db
+				System.out.println("\n Adding new car to database:");
 				esql.executeUpdate("INSERT INTO CAR (vin, make, model, year) VALUES ('" 
 				+ carVin + "', '" + carMake + "', '" + carModel + "', " + carYear + ");"  );
 
 				//show that values are in db
 				String test = "SELECT * FROM CAR WHERE vin = '" + carVin + "';" ;
 				esql.executeQueryAndPrintResult(test);
+				System.out.println("Done adding car. Returning to MAIN MENU...");
 				break;
 			}
 			catch(Exception e){
