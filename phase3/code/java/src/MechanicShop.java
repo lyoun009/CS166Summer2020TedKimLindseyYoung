@@ -576,31 +576,62 @@ public class MechanicShop{
 							// complain TEXT
 
 							try{
-								String qs;
+								String qs1;
 								List<List<String>> x;
 								int setRid;
-								qs = String.format("SELECT s.rid FROM Service_request s");
-								x = esql.executeQueryAndReturnResult(qs);
+								qs1 = String.format("SELECT s.rid FROM Service_request s");
+								x = esql.executeQueryAndReturnResult(qs1);
 								setRid = x.size() + 1;
+							
+							// getting VIN
+							
+								String qs2;
+								List<List<String>> setVin;
+								//int setVin;
+								qs2 = String.format("SELECT o.car_vin FROM Owns o WHERE o.ownership_id = '" + ownID + "';");
+								setVin = esql.executeQueryAndReturnResult(qs2);
+							
+							
+							// getting Date
+							
+								// String qs3;
+								// List<List<String>> z;
+								// int setDate;
+								// qs3 = String.format("SELECT CURRENT_DATE;");
+								// z = esql.executeQueryAndReturnResult(qs);
+
+							// getting odometer
+							int odo = 0;
+								 try{
+									System.out.print("Enter odometer reading: ");
+									 odo = scnr.nextInt();
+									if(odo <= 0){
+										throw new Exception("Odometer can't be null.");
+									}
+									break;
+								 }
+								 catch(Exception e){
+									System.err.println (e.getMessage());
+								 }
+							
+							// getting complaint
+									System.out.print("Enter complaint: ");
+									String comp = scnr.nextLine();
+								
+							String sql = "INSERT INTO SERVICE_REQUEST (rid, customer_id, car_vin, date, odometer, complain) VALUES (" + setRid + ", " 
+							+ custID + ", " + setVin + ", " + "CURRENT_DATE," + odo + ", " + comp + ");";
+
+							esql.executeUpdate(sql);
+							String t = "SELECT * FROM SERVICE_REQUEST WHERE id = '" + setRid + "';" ;
+							esql.executeQueryAndPrintResult(t);
 							}
 							catch(Exception e){
 								System.err.println (e.getMessage());
 							}
 
-							try{
-								String qs;
-								List<List<String>> x;
-								int setRid;
-								qs = String.format("SELECT o.car_vin FROM Owns o WHERE o.ownership_id = '" + ownID + "';");
-								x = esql.executeQueryAndReturnResult(qs);
-								System.out.println(x);
-							}
-							catch(Exception e){
-								System.err.println (e.getMessage());
-							}
 
 							
-
+							
 
 
 
