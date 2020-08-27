@@ -622,9 +622,9 @@ public class MechanicShop{
 							+ custID + ", " + setVin + ", " + "CURRENT_DATE," + odo + ", " + comp + ");";
 
 							esql.executeUpdate(sql);
-							String t = "SELECT * FROM SERVICE_REQUEST WHERE rid = '" + setRid + "';" ;
-							esql.executeQueryAndPrintResult(t);
-							return;
+							//String t = "SELECT * FROM SERVICE_REQUEST WHERE rid = '" + setRid + "';" ;
+							//esql.executeQueryAndPrintResult(t);
+							keepAsking = false;
 							}
 							catch(Exception e){
 								System.err.println (e.getMessage());
