@@ -723,7 +723,6 @@ public class MechanicShop{
 			int nRows;
 			sq = "SELECT C.fname, C.lname, A.bill, A.comment, S.date FROM Customer C, Closed_Request A,  Service_Request S WHERE A.bill < 100 AND A.rid = S.rid AND S.customer_id = C.id";
 			nRows = esql.executeQueryAndPrintResult(sq);
-			System.out.println("The number of rows with customers that have bills that cost less than 100 is:" + nRows);
 		}
 		catch(Exception exc) {
 			System.err.println(exc.getMessage());
@@ -736,7 +735,6 @@ public class MechanicShop{
 			int nRows;
 			sq = "SELECT A.fname, A.lname, A.numCars FROM (SELECT O.customer_id, C.fname, C.lname, COUNT(*) numCars FROM Owns O,Customer C WHERE C.id = O.customer_id GROUP BY O.customer_id, C.fname, C.lname) AS A WHERE numCars > 20";
 			nRows = esql.executeQueryAndPrintResult(sq);
-			System.out.println("The number of rows with customers that have more than 20 cars is: " + nRows);
 		}
 		catch(Exception exc){
 			System.err.println(exc.getMessage());
@@ -749,7 +747,6 @@ public class MechanicShop{
 			int nRows;
 			sq = "SELECT X.make, X.model, X.year, S.odometer FROM Car X, Service_Request S WHERE S.car_vin = X.vin AND S.odometer < 50000 AND X.year < 1995";
 			nRows = esql.executeQueryAndPrintResult(sq);
-			System.out.println("The number of rows with cars that are models from before 1995 with 50000 miles is: " + nRows);
 			
 		}
 		catch(Exception exc) {
