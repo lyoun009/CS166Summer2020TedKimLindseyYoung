@@ -312,7 +312,10 @@ public class MechanicShop{
 			String qs;
 			List<List<String>> x;
 			int c_id;
-
+			String tfN;
+			String tlN;
+			String tpN;
+			
 		
 			qs = String.format("SELECT C.id FROM Customer C");
 			x = esql.executeQueryAndReturnResult(qs);
@@ -321,7 +324,7 @@ public class MechanicShop{
 				try { 
 					Scanner fnO = new Scanner(System.in);
 					System.out.println("Enter customer's first name: ");
-					String tfN = fnO.nextLine();
+					tfN = fnO.nextLine();
 					if (tfN.length() > 32) {
 						throw new Exception("First name cannot exceed 32 characters.");
 					}
@@ -338,7 +341,7 @@ public class MechanicShop{
 				try { 
 					Scanner lnO = new Scanner(System.in);
 					System.out.println("Enter customer's last name: ");
-					String tlN = lnO.nextLine();
+					tlN = lnO.nextLine();
 					if (tlN.length() > 32) {
 						throw new Exception("Last name cannot exceed 32 characters.");
 					}
@@ -355,7 +358,7 @@ public class MechanicShop{
 				try { 
 					Scanner pnO = new Scanner(System.in);
 					System.out.println("Enter customer's phone number: ");
-					String tpN = pnO.nextLine();
+					tpN = pnO.nextLine();
 					if (tpN.length() > 10) {
 						throw new Exception("Phone number cannot exceed 10 characters.");
 					}
