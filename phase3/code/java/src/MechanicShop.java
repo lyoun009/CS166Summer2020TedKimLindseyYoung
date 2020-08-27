@@ -321,14 +321,23 @@ public class MechanicShop{
 			Scanner fnO = new Scanner(System.in);
 			System.out.println("Enter customer's first name: ");
 			String tfN = fnO.nextLine();
+			if (tfN.length() > 32) {
+				throw new Exception("First name cannot exceed 32 characters.");
+			}
 
 			Scanner lnO = new Scanner(System.in);
 			System.out.println("Enter customer's last name: ");
 			String tlN = lnO.nextLine();
+			if (tlN.length() > 32) {
+				throw new Exception("Last name cannot exceed 32 characters.");
+			}
 
 			Scanner pnO = new Scanner(System.in);
 			System.out.println("Enter customer's phone number: ");
 			String tpN = pnO.nextLine();
+			if (tpN.length() > 10) {
+				throw new Exception("Phone number cannot exceed 10 characters.");
+			}
 
 			Scanner aO = new Scanner(System.in);
 			System.out.println("Enter customer's address: ");
@@ -393,7 +402,7 @@ public class MechanicShop{
 			try{
 				String qs;
 				List<List<String>> x;
-				
+
 				qs = String.format("SELECT M.id FROM Mechanic M");
 				x = esql.executeQueryAndReturnResult(qs);
 				mechID = x.size() + 1;
