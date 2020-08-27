@@ -308,7 +308,38 @@ public class MechanicShop{
 	}//end readChoice
 	
 	public static void AddCustomer(MechanicShop esql){//1  Ted
-		System.out.println("FIXME: Successfully entered AddCustomer function. Need to add Ted's implemenation!"); // For testing purposes, can delete later!
+		try {
+			String qs;
+			List<List<String>> x;
+			int c_id;
+			qs = String.format("SELECT C.id FROM Customer C");
+			x = esql.executeQueryAndReturnResult(qs);
+			c_id = x.size() + 1;
+
+			Scanner fnO = new Scanner(System.in);
+			System.out.println("Enter customer's first name: ");
+			String tfN = fnO.nextLine();
+
+			Scanner lnO = new Scanner(System.in);
+			System.out.println("Enter customer's last name: ");
+			String tlN = lnO.nextLine();
+
+			Scanner pnO = new Scanner(System.in);
+			System.out.println("Enter customer's phone number: ");
+			String tpN = pnO.nextLine();
+
+			Scanner aO = new Scanner(System.in);
+			System.out.println("Enter customer's address: ");
+			String ta = aO.nextLine();
+
+			String sq;
+			sq = String.format("INSERT INTO Customer(id, fname, lname, phone, address) VALUES(%d, '%s', '%s', '%s', '%s')", c_id, tfN, tlN, tpN, ta);
+			esql.executeUpdate(sq);
+		}
+		catch(Exception exc) {
+			System.err.println(exc.getMessage());
+		}
+
 	}
 	
 	public static void AddMechanic(MechanicShop esql){//2 Lindsey
@@ -627,30 +658,106 @@ public class MechanicShop{
 	}
 	
 	public static void CloseServiceRequest(MechanicShop esql) throws Exception{//5 Ted
-		
+		try {
+			int nRows;
+			int rN;
+			int mechID;
+			int billCost;
+			String comments;
+			String sq;
+
+			String qs;
+			qs = String.format("SELECT B.wid FROM Closed_Request B");
+			List<List<String>> y;
+			y = esql.executeQueryAndReturnResult(qs);
+			int crw = y.size() + 1;
+
+			Scanner tRN = new Scanner(System.in);
+			System.out.println("Enter service request number: ");
+			rN = tRN.nextInt();
+
+			Scanner tmechID = new Scanner(System.in);
+			System.out.println("Enter mechanic's ID: ");
+			mechID = tmechID.nextInt();
+
+			Scanner tcomments = new Scanner(System.in);
+			System.out.println("Enter any comments regarding the service request for repairs: ");
+			comments = tcomments.nextLine();
+
+			Scanner tbillCost = new Scanner(System.in);
+			System.out.println("Enter cost to put on the customer's bill: ");
+			billCost = tRN.nextInt();
+
+			sq = String.format("SELECT * From Mechanic M WHERE M.id = %d", mechID);
+			nRows = esql.executeQuery(sq);
+			if (nRows == 0) {
+				System.out.println("Invalid mechanic ID. Does not exist.\n");
+				return;
+			}
+
+			sq = String.format("SELECT * FROM Service_Request S WHERE S.rid = %d", rN);
+			nRows = esql.executeQuery(sq);
+			if(nRows == 0) {
+				System.out.println("Invalid service request ID. Does not exist.\n");
+				return;
+			}
+
+			sq = String.format("SELECT * FROM Service_Request S WHERE S.rid = %d AND S.date <= CURRENT_DATE", rN);
+			nRows = esql.executeQuery(sq);
+			if (nRows == 0) {
+				System.out.println("Invalid or out of date request date.\n");
+				return;
+			}
+
+			sq = String.format("INSERT INTO Closed_Request(wid, rid, date, comment, bill) VALUES(%d, %d, %d, CURRENT_DATE, '%s', %d)", crw, rN, mechID, comments, billCost);
+			esql.executeQuery(sq);
+		}
+		catch(Exception exc) {
+			System.err.println(exc.getMessage());
+		}
 	}
 	
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6 Ted
-		
+		try {
+			String sq;
+			int nRows;
+			sq = "SELECT C.fname, C.lname, A.bill, A.comment, S.date FROM Customer C, Closed_Request A,  Service_Request S WHERE A.bill < 100 AND A.rid = S.rid AND S.customer_id = C.id";
+			nRows = esql.executeQueryAndPrintResult(sq);
+			System.out.println("The number of rows with customers that have bills that cost less than 100 is:" + nRows);
+		}
+		catch(Exception exc) {
+			System.err.println(exc.getMessage());
+		}
 	}
 	
 	public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7 Ted
-		
+		try {
+			String sq;
+			int nRows;
+			sq = "SELECT A.fname, A.lname, A.numCars FROM (SELECT O.customer_id, C.fname, C.lname, COUNT(*) numCars FROM Owns O,Customer C WHERE C.id = O.customer_id GROUP BY O.customer_id, C.fname, C.lname) AS A WHERE numCars > 20";
+			nRows = esql.executeQueryAndPrintResult(sq);
+			System.out.println("The number of rows with customers that have more than 20 cars is: " + nRows);
+		}
+		catch(Exception exc){
+			System.err.println(exc.getMessage());
+		}
 	}
 	
 	public static void ListCarsBefore1995With50000Milles(MechanicShop esql){//8 Ted
-		
+		try {
+			String sq;
+			int nRows;
+			sq = "SELECT X.make, X.model, X.year, S.odometer FROM Car X, Service_Request S WHERE S.car_vin = X.vin AND S.odometer < 50000 AND X.year < 1995";
+			nRows = esql.executeQueryAndPrintResult(sq);
+			System.out.println("The number of rows with cars that are models from before 1995 with 50000 miles is: " + nRows);
+			
+		}
+		catch(Exception exc) {
+			System.err.println(exc.getMessage());
+		}
 	}
 	
 	public static void ListKCarsWithTheMostServices(MechanicShop esql){//9 Lindsey
-		// SQL Code to implement:
-		// SELECT cc.make, cc.model, COUNT(*) AS num_serv_requests
-		// FROM Car cc, Service_request s
-		// WHERE cc.vin = s.car_vin
-		// GROUP BY cc.vin
-		// ORDER BY num_serv_requests desc
-		// LIMIT K;
-
 		int k;
 		Scanner scnr = new Scanner(System.in);
 
@@ -668,13 +775,6 @@ public class MechanicShop{
 	}
 	
 	public static void ListCustomersInDescendingOrderOfTheirTotalBill(MechanicShop esql){// 10 Lindsey
-		// SELECT cust.fname, cust.lname, SUM (bill) AS total_bill
-		// FROM CUSTOMER cust, SERVICE_REQUEST sr, CLOSED_REQUEST cr
-		// WHERE cust.id = sr.customer_id
-		// AND cr.rid = sr.rid
-		// GROUP BY cust.id
-		// ORDER BY total_bill desc
-
 		String sqlCmd = "SELECT cust.fname, cust.lname, SUM (bill) AS total_bill FROM CUSTOMER cust, SERVICE_REQUEST sr, CLOSED_REQUEST cr WHERE cust.id = sr.customer_id AND cr.rid = sr.rid GROUP BY cust.id ORDER BY total_bill desc;" ;
 		
 		try{
