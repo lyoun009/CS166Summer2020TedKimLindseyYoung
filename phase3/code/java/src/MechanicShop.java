@@ -318,7 +318,7 @@ public class MechanicShop{
 		
 			String mechFirstName;
 			String mechLastName;
-			int mechID;
+			int mechID = 0;
 			int mechExp; 
 			
 			// Reading in input using Scanner
@@ -362,9 +362,18 @@ public class MechanicShop{
 
 			}
 			//FIXME: needs to handle id nums better
-			System.out.print("Enter the mechanic id: ");
-			mechID = scnr.nextInt();
-
+			try{
+				String qs;
+				List<List<String>> x;
+				qs = String.format("SELECT M.id FROM Customer M");
+				x = esql.executeQueryAndReturnResult(qs);
+				mechID = x.size() + 1;
+			}
+			catch(Exception e){
+				System.err.println (e.getMessage());
+			}
+			//System.out.print("Enter the mechanic id: ");
+			//mechID = scnr.nextInt();
 
 			while(true){
 				try{
