@@ -625,6 +625,7 @@ public class MechanicShop{
 							esql.executeUpdate(sql);
 							//String t = "SELECT * FROM SERVICE_REQUEST WHERE rid = '" + setRid + "';" ;
 							//esql.executeQueryAndPrintResult(t);
+							System.out.println("Done making service request.");
 							break;
 			
 							}
