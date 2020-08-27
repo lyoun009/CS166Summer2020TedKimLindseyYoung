@@ -478,6 +478,7 @@ public class MechanicShop{
 	
 	public static void InsertServiceRequest(MechanicShop esql){//4 Lindsey
 		String userInput;
+		boolean notValid = true;
 		Scanner scnr = new Scanner(System.in);
 		String sql = "";
 
@@ -510,8 +511,7 @@ public class MechanicShop{
 			
 			int custID = -1;
 
-			while(keepAsking){
-				boolean notValid = true;
+			while(notValid){
 				while(notValid){
 					System.out.print("\n Enter in the id of customer you would like to select: ");
 					custID = scnr.nextInt();
