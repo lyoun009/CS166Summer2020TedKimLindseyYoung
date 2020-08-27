@@ -453,6 +453,7 @@ public class MechanicShop{
 				//show that values are in db
 				String test = "SELECT * FROM CAR WHERE vin = '" + carVin + "';" ;
 				esql.executeQueryAndPrintResult(test);
+				break;
 			}
 			catch(Exception e){
 				System.out.println(e.getMessage());
