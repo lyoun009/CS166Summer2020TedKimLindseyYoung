@@ -428,7 +428,7 @@ public class MechanicShop{
 		try {
 			String sq;
 			int nRows;
-			sq = "SELECT C.fname, C.lname, C.numCars FROM (SELECT O.customer_id, D.fname, D.lname, COUNT(*) C.numCars FROM Owns O, Customer D WHERE D.id = O.customer_id, D.fname, D.lname) AS C WHERE C.numCars > 20";
+			sq = "SELECT A.fname, A.lname, A.numCars FROM (SELECT O.customer_id, C.fname, C.lname, COUNT(*) numCars FROM Owns O,Customer C WHERE C.id = O.customer_id GROUP BY O.customer_id, C.fname, C.lname) AS A WHERE numCars > 20";
 			nRows = esql.executeQueryAndPrintResult(sq);
 			System.out.println("The number of rows with customers that have more than 20 cars is: " + nRows);
 		}
