@@ -602,10 +602,10 @@ public class MechanicShop{
 								// z = esql.executeQueryAndReturnResult(qs);
 
 							// getting odometer
-							int odo = 0;
+							int odo = 10;
 								 try{
 									System.out.print("Enter odometer reading: ");
-									 odo = scnr.nextInt();
+									 //odo = scnr.nextInt();
 									if(odo <= 0){
 										throw new Exception("Odometer can't be null.");
 									}
