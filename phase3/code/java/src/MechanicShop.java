@@ -312,6 +312,8 @@ public class MechanicShop{
 			String qs;
 			List<List<String>> x;
 			int c_id;
+
+		
 			qs = String.format("SELECT C.id FROM Customer C");
 			x = esql.executeQueryAndReturnResult(qs);
 			c_id = x.size() + 1;
@@ -391,6 +393,7 @@ public class MechanicShop{
 			try{
 				String qs;
 				List<List<String>> x;
+				
 				qs = String.format("SELECT M.id FROM Mechanic M");
 				x = esql.executeQueryAndReturnResult(qs);
 				mechID = x.size() + 1;
