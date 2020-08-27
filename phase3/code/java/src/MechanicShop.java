@@ -308,20 +308,19 @@ public class MechanicShop{
 	}//end readChoice
 	
 	public static void AddCustomer(MechanicShop esql){//1  Ted
-		//try {
+		try {
 			String qs;
 			List<List<String>> x;
 			int c_id;
 			String tfN;
 			String tlN;
 			String tpN;
-			
+			String ta;
 		
 			qs = String.format("SELECT C.id FROM Customer C");
 			x = esql.executeQueryAndReturnResult(qs);
 			c_id = x.size() + 1;
-			while(true) {
-				try { 
+	
 					Scanner fnO = new Scanner(System.in);
 					System.out.println("Enter customer's first name: ");
 					tfN = fnO.nextLine();
@@ -331,14 +330,7 @@ public class MechanicShop{
 					else if (tfN.length() <= 0) {
 						throw new Exception("First name cannot be null.");
 					}
-				}
-				catch (Exception exc) {
-					System.err.println(exc.getMessage());
-				}
-			}
-
-			while(true) {
-				try { 
+		
 					Scanner lnO = new Scanner(System.in);
 					System.out.println("Enter customer's last name: ");
 					tlN = lnO.nextLine();
@@ -348,14 +340,8 @@ public class MechanicShop{
 					else if (tlN.length() <= 0) {
 						throw new Exception("Last name cannot be null.");
 					}
-				}
-				catch (Exception exc) {
-					System.err.println(exc.getMessage());
-				}
-			}
-
-			while(true) {
-				try { 
+				
+			
 					Scanner pnO = new Scanner(System.in);
 					System.out.println("Enter customer's phone number: ");
 					tpN = pnO.nextLine();
@@ -365,23 +351,19 @@ public class MechanicShop{
 					else if (tpN.length() <= 0) {
 						throw new Exception("Phone number cannot be null.");
 					}
-				}
-				catch (Exception exc) {
-					System.err.println(exc.getMessage());
-				}
-			}
+	
 
 			Scanner aO = new Scanner(System.in);
 			System.out.println("Enter customer's address: ");
-			String ta = aO.nextLine();
+			ta = aO.nextLine();
 
 			String sq;
 			sq = String.format("INSERT INTO Customer(id, fname, lname, phone, address) VALUES(%d, '%s', '%s', '%s', '%s')", c_id, tfN, tlN, tpN, ta);
 			esql.executeUpdate(sq);
-		//}
-		// catch(Exception exc) {
-		// 	System.err.println(exc.getMessage());
-		// }
+		}
+		catch(Exception exc) {
+			System.err.println(exc.getMessage());
+		}
 
 	}
 	
