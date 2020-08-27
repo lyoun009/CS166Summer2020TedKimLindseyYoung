@@ -410,19 +410,20 @@ public class MechanicShop{
 		System.out.print("Enter in the last name: ");
 		userInput = scnr.next();
 		int test = -1;
+		boolean keepAsking = true;
 
 		// check if exists in table
 		try{
 			String check = "SELECT * FROM CUSTOMER WHERE lname= '" + userInput + "';" ;
 			test = esql.executeQuery(check);
-			System.out.println("Test val: " + test);
+			System.out.println("Test val: " + test); // for testing, comment out later
 			// if test is 1, means that record exists. 0 means doesnt exist in table
 		}
 		catch (Exception e){
 			System.err.println (e.getMessage());
 		}
 
-		if(test == 1){ // record exists in table
+		if(test >= 1){ // record exists in table
 			// output all clients that match user's input
 			try{
 				String getLName = "SELECT id, fname, lname FROM CUSTOMER WHERE lname = '" + userInput + "';" ;
@@ -432,12 +433,62 @@ public class MechanicShop{
 				System.err.println (e.getMessage());
 			}
 			
-			System.out.println("\n Enter in the id of customer you would like to select");
+			
+			while(keepAsking){
+				int custID;
+				System.out.print("\n Enter in the id of customer you would like to select: ");
+				custID = scnr.nextInt();
+
+				String getCars = "SELECT ownership_id, vin, make, model, year FROM OWNS o, Customer cust, Car cc WHERE o.customer_id = cust.id AND o.car_vin = cc.vin AND cust.id = " + custID + ";" ;
+				
+				//check if selection exists (is valid)
+				try{
+					test = esql.executeQuery(getCars);
+				}
+				catch (Exception e){
+					System.err.println (e.getMessage());
+				}
+				
+				System.out.println("Test val: " + test); // for testing, comment out later
+				// if test is >= 1, means record(s) exists. 0 means doesnt exist in table
+				int ownID;
+				if(test >= 1){
+					while(true){
+						try{
+							esql.executeQueryAndPrintResult(getCars);
+						}
+						catch (Exception e){
+							System.err.println (e.getMessage());
+						}
+						System.out.print("\nEnter in the ownership id of the car you would like to add the service request to: ");
+						ownID = scnr.nextInt();
+						try{
+							test = esql.executeQuery("SELECT ownership_id, vin, make, model, year FROM OWNS o, Customer cust, Car cc WHERE o.customer_id = cust.id AND o.car_vin = cc.vin AND cust.id = " + custID + "AND ownership_id = " + ownID + ";");
+						}
+						catch (Exception e){
+							System.err.println (e.getMessage());
+						}
+						if(test == 1){//valid car selection
+							// Initiate the service request here
+							System.out.println("Initiating service request...");
+							// TODO: FIXME
+							break;
+						}
+						else{// invalid car selection
+							System.out.println("Invalid car selection. Try again.");
+						}
+					}
+
+				}
+				else{
+					System.out.println("Car doesn't exist.");
+				}
+			
+			}
 
 		}
 		else{ // record does not exist, option to add customer
 			int userChoice;
-			boolean keepAsking = true;
 			System.out.println("Customer does not exist in database.");
 			
 			while(keepAsking){
