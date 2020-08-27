@@ -403,6 +403,23 @@ public class MechanicShop{
 	}
 	
 	public static void InsertServiceRequest(MechanicShop esql){//4 Lindsey
+		String userInput;
+		Scanner scnr = new Scanner(System.in);
+
+		// ask for user to input the last name, read in input
+		System.out.print("Enter in the last name: ");
+		userInput = scnr.next();
+
+		// output all clients that match user's input
+		try{
+			String getLName = "SELECT id, fname, lname FROM CUSTOMER WHERE lname = " + userInput + ";" ;
+			esql.executeQueryAndPrintResult(getLName);
+		}
+		catch (Exception e){
+			System.err.println (e.getMessage());
+		}
+
+
 		
 	}
 	
@@ -434,7 +451,7 @@ public class MechanicShop{
 		int k;
 		Scanner scnr = new Scanner(System.in);
 
-		System.out.println("Enter K number of cars: ");
+		System.out.print("Enter K number of cars: ");
 		k = scnr.nextInt();
 
 		String sqlCmd = "SELECT cc.make, cc.model, COUNT(*) AS num_serv_requests FROM CAR cc, Service_request s WHERE cc.vin = s.car_vin GROUP BY cc.vin ORDER BY num_serv_requests desc LIMIT " + k + ";" ;
