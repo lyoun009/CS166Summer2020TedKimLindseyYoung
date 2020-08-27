@@ -308,7 +308,7 @@ public class MechanicShop{
 	}//end readChoice
 	
 	public static void AddCustomer(MechanicShop esql){//1  Ted
-		
+		System.out.println("Successfully entered AddCustomer function."); // For testing purposes, can delete later!
 	}
 	
 	public static void AddMechanic(MechanicShop esql){//2 Lindsey
@@ -415,7 +415,7 @@ public class MechanicShop{
 		try{
 			String check = "SELECT * FROM CUSTOMER WHERE lname= '" + userInput + "';" ;
 			test = esql.executeQuery(check);
-			//System.out.println("Test val: " + test);
+			System.out.println("Test val: " + test);
 			// if test is 1, means that record exists. 0 means doesnt exist in table
 		}
 		catch (Exception e){
@@ -431,6 +431,9 @@ public class MechanicShop{
 			catch (Exception e){
 				System.err.println (e.getMessage());
 			}
+			
+			System.out.println("\n Enter in the id of customer you would like to select");
+
 		}
 		else{ // record does not exist, option to add customer
 			int userChoice;
@@ -440,11 +443,11 @@ public class MechanicShop{
 			while(keepAsking){
 				System.out.println("Would you like to add this customer to the database? \n 1. Yes \n 2. No");
 				userChoice = scnr.nextInt();
-				if(userChoice == 1){
+				if(userChoice == 1){ // go to AddCustomer function
 					AddCustomer(esql);
 					break;
 				}
-				else if(userChoice == 2){
+				else if(userChoice == 2){ // Exit back to Main Menu
 					System.out.println("Stopped initiating service request... Returning to MAIN MENU.");
 					break;
 				}
@@ -452,15 +455,8 @@ public class MechanicShop{
 					System.out.println("Invalid choice. Please try again.");
 					keepAsking = true;
 				}
-			}
-
-			
-
-			
-		}
-
-
-		
+			}				
+		}		
 	}
 	
 	public static void CloseServiceRequest(MechanicShop esql) throws Exception{//5 Ted
@@ -480,7 +476,7 @@ public class MechanicShop{
 	}
 	
 	public static void ListKCarsWithTheMostServices(MechanicShop esql){//9 Lindsey
-		// SQL Code to implement
+		// SQL Code to implement:
 		// SELECT cc.make, cc.model, COUNT(*) AS num_serv_requests
 		// FROM Car cc, Service_request s
 		// WHERE cc.vin = s.car_vin
