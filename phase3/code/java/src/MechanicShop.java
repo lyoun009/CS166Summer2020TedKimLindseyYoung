@@ -313,8 +313,49 @@ public class MechanicShop{
 	
 	public static void AddMechanic(MechanicShop esql){//2 Lindsey
 		// has basic adding to db functionality
-		// still need to implement checking valid parameters part
+		// still need to implement checking valid parameters part 
+		// aka error handling if wrong input
 		
+		String carVin;
+		String carMake;
+		String carModel;
+		int carYear; 
+		
+		// Reading in input using Scanner
+		Scanner scnr = new Scanner(System.in);
+
+		System.out.print("Enter the car vin: ");
+		carVin = scnr.next();
+		System.out.print("Enter the car make: ");
+		carMake = scnr.next();
+		System.out.print("Enter the car model: ");
+		carModel = scnr.next();
+		System.out.print("Enter the car year: ");
+		carYear = scnr.nextInt();
+		
+		// Putting values into database: 
+		try{
+			esql.executeUpdate("INSERT INTO CAR (vin, make, model, year) VALUES (" 
+			+ carVin + ", '" + carMake + "', '" + carModel + "', " + carYear + ");"  );
+		}
+		catch (Exception e){
+			System.err.println (e.getMessage());
+		}
+			
+		
+		// Check if values got inputted into DB
+		try{
+			String test = "SELECT * FROM CAR WHERE vin = '" + carVin + "';" ;
+			esql.executeQueryAndPrintResult(test);
+		}
+		catch (Exception e){
+			System.err.println (e.getMessage());
+		}
+		
+
+	}
+	
+	public static void AddCar(MechanicShop esql){//3 Lindsey
 		String mechFirstName;
 		String mechLastName;
 		int mechID;
@@ -356,11 +397,6 @@ public class MechanicShop{
 		catch (Exception e){
 			System.err.println (e.getMessage());
 		}
-		
-
-	}
-	
-	public static void AddCar(MechanicShop esql){//3 Lindsey
 		
 	}
 	
