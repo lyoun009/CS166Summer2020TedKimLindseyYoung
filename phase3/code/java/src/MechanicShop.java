@@ -409,25 +409,54 @@ public class MechanicShop{
 		// ask for user to input the last name, read in input
 		System.out.print("Enter in the last name: ");
 		userInput = scnr.next();
-		int test;
+		int test = -1;
 
 		// check if exists in table
 		try{
 			String check = "SELECT * FROM CUSTOMER WHERE lname= '" + userInput + "';" ;
 			test = esql.executeQuery(check);
-			System.out.println("Test val: " + test);
+			//System.out.println("Test val: " + test);
+			// if test is 1, means that record exists. 0 means doesnt exist in table
 		}
 		catch (Exception e){
 			System.err.println (e.getMessage());
 		}
 
-		// output all clients that match user's input
-		try{
-			String getLName = "SELECT id, fname, lname FROM CUSTOMER WHERE lname = '" + userInput + "';" ;
-			esql.executeQueryAndPrintResult(getLName);
+		if(test == 1){ // record exists in table
+			// output all clients that match user's input
+			try{
+				String getLName = "SELECT id, fname, lname FROM CUSTOMER WHERE lname = '" + userInput + "';" ;
+				esql.executeQueryAndPrintResult(getLName);
+			}
+			catch (Exception e){
+				System.err.println (e.getMessage());
+			}
 		}
-		catch (Exception e){
-			System.err.println (e.getMessage());
+		else{ // record does not exist, option to add customer
+			int userChoice;
+			boolean keepAsking = true;
+			System.out.println("Customer does not exist in database.");
+			
+			while(keepAsking){
+				System.out.println("Would you like to add this customer to the database? \n 1. Yes \n 2. No");
+				userChoice = scnr.nextInt();
+				if(userChoice == 1){
+					AddCustomer(esql);
+					break;
+				}
+				else if(userChoice == 2){
+					System.out.println("Stopped initiating service request... Returning to MAIN MENU.");
+					break;
+				}
+				else{
+					System.out.println("Invalid choice. Please try again.");
+					keepAsking = true;
+				}
+			}
+
+			
+
+			
 		}
 
 
