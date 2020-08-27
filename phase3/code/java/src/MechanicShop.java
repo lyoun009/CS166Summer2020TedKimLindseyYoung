@@ -308,7 +308,7 @@ public class MechanicShop{
 	}//end readChoice
 	
 	public static void AddCustomer(MechanicShop esql){//1  Ted
-		System.out.println("Successfully entered AddCustomer function."); // For testing purposes, can delete later!
+		System.out.println("FIXME: Successfully entered AddCustomer function. Need to add Ted's implemenation!"); // For testing purposes, can delete later!
 	}
 	
 	public static void AddMechanic(MechanicShop esql){//2 Lindsey
@@ -538,6 +538,7 @@ public class MechanicShop{
 							System.out.println("Initiating service request...");
 
 							try{
+							// getting rid
 								String qs1;
 								List<List<String>> x;
 								int setRid;
@@ -546,7 +547,6 @@ public class MechanicShop{
 								setRid = x.size() + 1;
 							
 							// getting VIN
-							
 								String qs2;
 								List<List<String>> y;
 								String setVin;
