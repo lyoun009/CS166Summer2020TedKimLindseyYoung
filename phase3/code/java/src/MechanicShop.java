@@ -618,11 +618,16 @@ public class MechanicShop{
 							// getting complaint
 									System.out.print("Enter complaint: ");
 									String comp = scnr.nextLine();
-								
-							 sql = "INSERT INTO SERVICE_REQUEST (rid, customer_id, car_vin, date, odometer, complain) VALUES (" + setRid + ", " 
-							+ custID + ", " + setVin + ", " + "CURRENT_DATE," + odo + ", " + comp + ");";
-
-							esql.executeUpdate(sql);
+							
+							try{
+								sql = "INSERT INTO SERVICE_REQUEST (rid, customer_id, car_vin, date, odometer, complain) VALUES (" + setRid + ", " 
+								+ custID + ", " + setVin + ", " + "CURRENT_DATE," + odo + ", " + comp + ");";
+								esql.executeUpdate(sql);
+							}
+							catch(Exception e){
+								System.err.println (e.getMessage());
+							}
+							
 							//String t = "SELECT * FROM SERVICE_REQUEST WHERE rid = '" + setRid + "';" ;
 							//esql.executeQueryAndPrintResult(t);
 							System.out.println("Done making service request.");
