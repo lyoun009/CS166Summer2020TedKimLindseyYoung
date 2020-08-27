@@ -447,8 +447,8 @@ public class MechanicShop{
 				
 				
 				// input values into db
-				esql.executeUpdate("INSERT INTO CAR (vin, make, model, year) VALUES (" 
-				+ carVin + ", '" + carMake + "', '" + carModel + "', " + carYear + ");"  );
+				esql.executeUpdate("INSERT INTO CAR (vin, make, model, year) VALUES ('" 
+				+ carVin + "', '" + carMake + "', '" + carModel + "', " + carYear + ");"  );
 
 				//show that values are in db
 				String test = "SELECT * FROM CAR WHERE vin = '" + carVin + "';" ;
