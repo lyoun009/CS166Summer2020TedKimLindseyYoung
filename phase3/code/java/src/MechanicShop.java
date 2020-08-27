@@ -616,8 +616,18 @@ public class MechanicShop{
 								 }
 							
 							// getting complaint
+								String comp = "";
+								 try{
 									System.out.print("Enter complaint: ");
-									String comp = scnr.nextLine();
+									comp = scnr.next();
+									if(comp.length() >= 1000){
+										throw new Exception("Too long.");
+									}
+								 }
+								 catch(Exception e){
+									System.err.println (e.getMessage());
+								 }
+									
 							
 							try{
 								sql = "INSERT INTO SERVICE_REQUEST (rid, customer_id, car_vin, date, odometer, complain) VALUES (" + setRid + ", " 
