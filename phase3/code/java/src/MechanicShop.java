@@ -427,18 +427,22 @@ public class MechanicShop{
 					throw new Exception("Invalid VIN, can't be null and must be less than 16 characters.");
 				}
 				break;
-			}
-			catch(Exception e){
-				System.out.println(e.getMessage());
-			}
-		}
-		
-		while(true){
-			try{
 				System.out.print("Enter the car make: ");
 				carMake = scnr.next();
-				if(carVin.length() == 0 || carVin.length() > 16){
+				if(carMake.length() == 0 || CarMake.length() > 32){
 					throw new Exception("Invalid input. Cannot exceed 32 characters!");
+				}
+				break;
+				System.out.print("Enter the car model: ");
+				carModel = scnr.next();
+				if(carModel.length() == 0 || carModel.length() > 32){
+					throw new Exception("Invalid input. Cannot exceed 32 characters!");
+				}
+				break;
+				System.out.print("Enter the car year: ");
+				carYear = scnr.nextInt();
+				if(carYear < 1900 || carYear > 2020){
+					throw new Exception("Invalid input. Must be a valid year.");
 				}
 				break;
 			}
@@ -447,12 +451,7 @@ public class MechanicShop{
 			}
 
 		}
-		System.out.print("Enter the car make: ");
-		carMake = scnr.next();
-		System.out.print("Enter the car model: ");
-		carModel = scnr.next();
-		System.out.print("Enter the car year: ");
-		carYear = scnr.nextInt();
+		
 		
 		// Putting values into database: 
 		try{
@@ -543,10 +542,8 @@ public class MechanicShop{
 				catch (Exception e){
 					System.err.println (e.getMessage());
 				}
-				
-				System.out.println("Test val: " + test); // for testing, comment out later
-				// if test is >= 1, means record(s) exists. 0 means doesnt exist in table
 
+				// if test is >= 1, means record(s) exists. 0 means doesnt exist in table
 				int ownID;
 				if(test >= 1){
 					while(true){
@@ -569,13 +566,6 @@ public class MechanicShop{
 							// Initiate the service request here
 							System.out.println("Initiating service request...");
 
-							// rid INTEGER NOT NULL, // done
-							// customer_id INTEGER NOT NULL, // custID
-							// car_vin VARCHAR(16) NOT NULL, //
-							// date DATE NOT NULL,
-							// odometer _PINTEGER NOT NULL,
-							// complain TEXT
-
 							try{
 								String qs1;
 								List<List<String>> x;
@@ -594,8 +584,6 @@ public class MechanicShop{
 								setVin = y.toString();
 								setVin = setVin.substring(2, setVin.length()-2);
 							
-						
-
 							// getting odometer
 								int odo = 0;
 								System.out.print("Enter odometer reading: ");
@@ -606,15 +594,10 @@ public class MechanicShop{
 							// getting complaint 	
 								String comp = "";
 								System.out.print("Enter complaint: ");
-								comp = scnr.next();
+								comp = scnr.nextLine();
 								if(comp.length() >= 10000){
 									throw new Exception("Too long.");
-								}
-									
-									
-								
-								 
-									
+								}								
 							
 							try{
 								System.out.println("\nCreated Service Request:");
@@ -623,22 +606,20 @@ public class MechanicShop{
 								esql.executeUpdate(sql);
 								String t = "SELECT * FROM SERVICE_REQUEST WHERE rid = '" + setRid + "';" ;
 								esql.executeQueryAndPrintResult(t);
-								System.out.println("Done making service request.");
+								System.out.println("Done making service request.\n");
 								break;
 							}
 							catch(Exception e){
 								System.err.println (e.getMessage());
 							}
 							
-							
-			
 							}
 							catch(Exception e){
 								System.err.println (e.getMessage());
 							}
 						}
 						else{// invalid car selection
-							System.out.println("Invalid car selection. Try again.");
+							System.out.println("Invalid car selection. Try again.\n");
 						}
 					}
 
