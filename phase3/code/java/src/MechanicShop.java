@@ -592,6 +592,7 @@ public class MechanicShop{
 								qs2 = String.format("SELECT o.car_vin FROM Owns o WHERE o.ownership_id = '" + ownID + "';");
 								y = esql.executeQueryAndReturnResult(qs2);
 								setVin = y.toString();
+								setVin = setVin.substring(2, setVin.length()-2);
 								System.out.println(setVin);
 								System.out.println(y);
 							
