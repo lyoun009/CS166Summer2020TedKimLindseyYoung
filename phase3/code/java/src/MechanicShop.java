@@ -311,7 +311,7 @@ public class MechanicShop{
 			List<List<String>> x;
 			int c_id;
 			qs = String.format("SELECT C.id FROM Customer C");
-			x = esql.executeQueryAndPrintResult(qs);
+			x = esql.executeQueryAndReturnResult(qs);
 			c_id = x.size() + 1;
 
 			Scanner fnO = new Scanner(System.in);
@@ -332,7 +332,7 @@ public class MechanicShop{
 
 			String sq;
 			sq = String.format("INSERT INTO Customer(id, fname, lname, phone, address) VALUES(%d, '%s', '%s', '%s', '%s')", c_id, tfN, tlN, tpN, ta);
-			esql.executeUpdate();
+			esql.executeUpdate(sq);
 		}
 		catch(Exception exc) {
 			System.err.println(exc.getMessage());
@@ -363,7 +363,7 @@ public class MechanicShop{
 			String qs;
 			qs = String.format("SELECT B.wid FROM Closed_Request B");
 			List<List<String>> y;
-			y = esql.executeQueryAndPrintResult(qs);
+			y = esql.executeQueryAndReturnResult(qs);
 			int crw = y.size() + 1;
 
 			Scanner tRN = new Scanner(System.in);
@@ -433,7 +433,7 @@ public class MechanicShop{
 			System.out.println("The number of rows with customers that have more than 20 cars is: " + nRows);
 		}
 		catch(Exception exc){
-			System.err.println(exc.getMessage);
+			System.err.println(exc.getMessage());
 		}
 	}
 	
