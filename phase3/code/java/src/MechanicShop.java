@@ -588,10 +588,10 @@ public class MechanicShop{
 							
 								String qs2;
 								List<List<String>> y;
-								int setVin;
+								String setVin;
 								qs2 = String.format("SELECT o.car_vin FROM Owns o WHERE o.ownership_id = '" + ownID + "';");
 								y = esql.executeQueryAndReturnResult(qs2);
-								setVin = y.size() +1;
+								setVin = y.toString();
 								System.out.println(setVin);
 								System.out.println(y);
 							
