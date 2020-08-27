@@ -325,9 +325,9 @@ public class MechanicShop{
 		Scanner scnr = new Scanner(System.in);
 
 		System.out.print("Enter the mechanic first name: ");
-		mechFirstName = scnr.next();
+		mechFirstName = scnr.nextLine();
 		System.out.print("Enter the mechanic last name: ");
-		mechLastName = scnr.next();
+		mechLastName = scnr.nextLine();
 		System.out.print("Enter the mechanic id: ");
 		mechID = scnr.nextInt();
 		System.out.print("Enter the mechanic's years of experience: ");
@@ -363,7 +363,7 @@ public class MechanicShop{
 	}
 	
 	public static void AddCar(MechanicShop esql){//3 Lindsey
-				String carVin;
+		String carVin;
 		String carMake;
 		String carModel;
 		int carYear; 
@@ -423,7 +423,29 @@ public class MechanicShop{
 	}
 	
 	public static void ListKCarsWithTheMostServices(MechanicShop esql){//9 Lindsey
-		//
+		// SQL Code to implement
+		// SELECT cc.make, cc.model, COUNT(*) AS num_serv_requests
+		// FROM Car cc, Service_request s
+		// WHERE cc.vin = s.car_vin
+		// GROUP BY cc.vin
+		// ORDER BY num_serv_requests desc
+		// LIMIT K;
+
+		int k;
+		Scanner scnr = new Scanner(System.in);
+
+		System.out.println("Enter K number of cars: ");
+		k = scnr.nextInt();
+
+		String sqlCmd = "SELECT cc.make, cc.model, COUNT(*) AS num_serv_requests FROM CAR cc, Service_request s WHERE cc.vin = s.car_vin ORDER BY num_serv_requests desc LIMIT " + k + ";" ;
+		
+	
+		try{
+			esql.executeQueryAndPrintResult(sqlCmd);
+		}
+		catch (Exception e){
+			System.err.println (e.getMessage());
+		}
 		
 	}
 	
