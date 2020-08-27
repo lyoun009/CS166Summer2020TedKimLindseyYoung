@@ -426,25 +426,33 @@ public class MechanicShop{
 				if(carVin.length() == 0 || carVin.length() > 16){
 					throw new Exception("Invalid VIN, can't be null and must be less than 16 characters.");
 				}
-				break;
+				
 				System.out.print("Enter the car make: ");
 				carMake = scnr.next();
-				if(carMake.length() == 0 || CarMake.length() > 32){
+				if(carMake.length() == 0 || carMake.length() > 32){
 					throw new Exception("Invalid input. Cannot exceed 32 characters!");
 				}
-				break;
+				
 				System.out.print("Enter the car model: ");
 				carModel = scnr.next();
 				if(carModel.length() == 0 || carModel.length() > 32){
 					throw new Exception("Invalid input. Cannot exceed 32 characters!");
 				}
-				break;
+				
 				System.out.print("Enter the car year: ");
 				carYear = scnr.nextInt();
 				if(carYear < 1900 || carYear > 2020){
 					throw new Exception("Invalid input. Must be a valid year.");
 				}
-				break;
+				
+				
+				// input values into db
+				esql.executeUpdate("INSERT INTO CAR (vin, make, model, year) VALUES (" 
+				+ carVin + ", '" + carMake + "', '" + carModel + "', " + carYear + ");"  );
+
+				//show that values are in db
+				String test = "SELECT * FROM CAR WHERE vin = '" + carVin + "';" ;
+				esql.executeQueryAndPrintResult(test);
 			}
 			catch(Exception e){
 				System.out.println(e.getMessage());
@@ -452,26 +460,7 @@ public class MechanicShop{
 
 		}
 		
-		
-		// Putting values into database: 
-		try{
-			esql.executeUpdate("INSERT INTO CAR (vin, make, model, year) VALUES (" 
-			+ carVin + ", '" + carMake + "', '" + carModel + "', " + carYear + ");"  );
-		}
-		catch (Exception e){
-			System.err.println (e.getMessage());
-		}
-			
-		
-		// Check if values got inputted into DB
-		try{
-			String test = "SELECT * FROM CAR WHERE vin = '" + carVin + "';" ;
-			esql.executeQueryAndPrintResult(test);
-		}
-		catch (Exception e){
-			System.err.println (e.getMessage());
-		}
-		
+
 		
 	}
 	
