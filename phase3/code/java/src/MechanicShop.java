@@ -457,7 +457,7 @@ public class MechanicShop{
 		// GROUP BY cust.id
 		// ORDER BY total_bill desc
 
-		String sqlCmd = "SELECT cust.fname, cust.lname, SUM (bill) AS total_bill FROM CUSTOMER cust, SERVICE_REQUEST sr, CLOSED REQUEST cr WHERE cust.id = sr.customer_id AND cr.rid = sr.rid GROUP BY cust.id ORDER BY total_bill desc;" ;
+		String sqlCmd = "SELECT cust.fname, cust.lname, SUM (bill) AS total_bill FROM CUSTOMER cust, SERVICE_REQUEST sr, CLOSED_REQUEST cr WHERE cust.id = sr.customer_id AND cr.rid = sr.rid GROUP BY cust.id ORDER BY total_bill desc;" ;
 		
 		try{
 			esql.executeQueryAndPrintResult(sqlCmd);
