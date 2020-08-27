@@ -593,8 +593,6 @@ public class MechanicShop{
 								y = esql.executeQueryAndReturnResult(qs2);
 								setVin = y.toString();
 								setVin = setVin.substring(2, setVin.length()-2);
-								System.out.println(setVin);
-								System.out.println(y);
 							
 						
 
@@ -619,7 +617,7 @@ public class MechanicShop{
 									
 							
 							try{
-								System.out.println("\n");
+								System.out.println("\nCreated Service Request:");
 								sql = "INSERT INTO SERVICE_REQUEST (rid, customer_id, car_vin, date, odometer, complain) VALUES (" + setRid + ", " 
 								+ custID + ", '" + setVin + "', " + "CURRENT_DATE," + odo + ", '" + comp + "');";
 								esql.executeUpdate(sql);
