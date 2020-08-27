@@ -479,6 +479,7 @@ public class MechanicShop{
 	public static void InsertServiceRequest(MechanicShop esql){//4 Lindsey
 		String userInput;
 		Scanner scnr = new Scanner(System.in);
+		String sql = "";
 
 		// ask for user to input the last name, read in input
 		System.out.print("Enter in the last name: ");
@@ -618,28 +619,18 @@ public class MechanicShop{
 									System.out.print("Enter complaint: ");
 									String comp = scnr.nextLine();
 								
-							String sql = "INSERT INTO SERVICE_REQUEST (rid, customer_id, car_vin, date, odometer, complain) VALUES (" + setRid + ", " 
+							 sql = "INSERT INTO SERVICE_REQUEST (rid, customer_id, car_vin, date, odometer, complain) VALUES (" + setRid + ", " 
 							+ custID + ", " + setVin + ", " + "CURRENT_DATE," + odo + ", " + comp + ");";
 
 							esql.executeUpdate(sql);
 							//String t = "SELECT * FROM SERVICE_REQUEST WHERE rid = '" + setRid + "';" ;
 							//esql.executeQueryAndPrintResult(t);
-							keepAsking = false;
-							notValid = false;
-							return;
+							break;
+			
 							}
 							catch(Exception e){
 								System.err.println (e.getMessage());
 							}
-
-
-							
-							
-
-
-
-							keepAsking = false;
-							break;
 						}
 						else{// invalid car selection
 							System.out.println("Invalid car selection. Try again.");
