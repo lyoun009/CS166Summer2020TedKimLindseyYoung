@@ -609,7 +609,7 @@ public class MechanicShop{
 									if(odo <= 0){
 										throw new Exception("Odometer can't be null.");
 									}
-									break;
+									
 								 }
 								 catch(Exception e){
 									System.err.println (e.getMessage());
