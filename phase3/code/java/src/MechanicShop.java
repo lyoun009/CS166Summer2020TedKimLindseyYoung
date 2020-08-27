@@ -638,17 +638,17 @@ public class MechanicShop{
 
 		}
 		else{ // record does not exist, option to add customer
-			int userChoice;
+			char userChoice;
 			System.out.println("Customer does not exist in database.");
 			
 			while(keepAsking){
 				System.out.println("Would you like to add this customer to the database? \n 1. Yes \n 2. No");
-				userChoice = scnr.nextInt();
-				if(userChoice == 1){ // go to AddCustomer function
+				userChoice = scnr.next().charAt(0);
+				if(userChoice == '1'){ // go to AddCustomer function
 					AddCustomer(esql);
 					break;
 				}
-				else if(userChoice == 2){ // Exit back to Main Menu
+				else if(userChoice == '2'){ // Exit back to Main Menu
 					System.out.println("Stopped initiating service request... Returning to MAIN MENU.");
 					break;
 				}
