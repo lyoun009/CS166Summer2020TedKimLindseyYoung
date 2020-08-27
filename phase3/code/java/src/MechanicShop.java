@@ -312,15 +312,11 @@ public class MechanicShop{
 	}
 	
 	public static void AddMechanic(MechanicShop esql){//2 Lindsey
-		// has basic adding to db functionality
-		// still need to implement checking valid parameters part 
-		// aka error handling if wrong input
-		
 			String mechFirstName;
 			String mechLastName;
 			int mechID = 0;
 			int mechExp; 
-			
+
 			// Reading in input using Scanner
 			Scanner scnr = new Scanner(System.in);
 
@@ -340,7 +336,6 @@ public class MechanicShop{
 					System.out.println(ex.getMessage());
 					System.out.println("Please try again.");
 				}
-
 			}
 
 			while(true){
@@ -453,11 +448,7 @@ public class MechanicShop{
 			catch(Exception e){
 				System.out.println(e.getMessage());
 			}
-
-		}
-		
-
-		
+		}		
 	}
 	
 	public static void InsertServiceRequest(MechanicShop esql){//4 Lindsey
@@ -499,7 +490,6 @@ public class MechanicShop{
 				while(notValid){
 					System.out.print("\n Enter in the id of customer you would like to select: ");
 					custID = scnr.nextInt();
-
 						//check if selection exists (is valid)
 					try{
 						test = esql.executeQuery("SELECT id, fname, lname FROM CUSTOMER WHERE lname = '" + userInput + "' AND id = " + custID + ";");
@@ -507,7 +497,6 @@ public class MechanicShop{
 					catch (Exception e){
 						System.err.println (e.getMessage());
 					}
-
 					if(test == 1){// means its valid customer id
 						notValid = false;
 					}
@@ -515,11 +504,9 @@ public class MechanicShop{
 						System.out.println("Invalid customer id. Please try again.");
 						notValid = true;
 					}
-
 				}
 
 				String getCars = "SELECT ownership_id, vin, make, model, year FROM OWNS o, Customer cust, Car cc WHERE o.customer_id = cust.id AND o.car_vin = cc.vin AND cust.id = " + custID + ";" ;
-				
 				//check if selection exists (is valid)
 				try{
 					test = esql.executeQuery(getCars);
@@ -527,7 +514,6 @@ public class MechanicShop{
 				catch (Exception e){
 					System.err.println (e.getMessage());
 				}
-
 				// if test is >= 1, means record(s) exists. 0 means doesnt exist in table
 				int ownID;
 				if(test >= 1){
@@ -585,19 +571,19 @@ public class MechanicShop{
 									throw new Exception("Too long.");
 								}								
 							
-							try{
-								System.out.println("\nCreated Service Request:");
-								sql = "INSERT INTO SERVICE_REQUEST (rid, customer_id, car_vin, date, odometer, complain) VALUES (" + setRid + ", " 
-								+ custID + ", '" + setVin + "', " + "CURRENT_DATE," + odo + ", '" + comp + "');";
-								esql.executeUpdate(sql);
-								String t = "SELECT * FROM SERVICE_REQUEST WHERE rid = '" + setRid + "';" ;
-								esql.executeQueryAndPrintResult(t);
-								System.out.println("Done making service request.\n");
-								break;
-							}
-							catch(Exception e){
-								System.err.println (e.getMessage());
-							}
+								try{
+									System.out.println("\nCreated Service Request:");
+									sql = "INSERT INTO SERVICE_REQUEST (rid, customer_id, car_vin, date, odometer, complain) VALUES (" + setRid + ", " 
+									+ custID + ", '" + setVin + "', " + "CURRENT_DATE," + odo + ", '" + comp + "');";
+									esql.executeUpdate(sql);
+									String t = "SELECT * FROM SERVICE_REQUEST WHERE rid = '" + setRid + "';" ;
+									esql.executeQueryAndPrintResult(t);
+									System.out.println("Done making service request.\n");
+									break;
+								}
+								catch(Exception e){
+									System.err.println (e.getMessage());
+								}
 							
 							}
 							catch(Exception e){
