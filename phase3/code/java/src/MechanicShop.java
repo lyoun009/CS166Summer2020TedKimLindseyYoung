@@ -582,6 +582,7 @@ public class MechanicShop{
 								qs = String.format("SELECT s.rid FROM Service_request s");
 								x = esql.executeQueryAndReturnResult(qs);
 								setRid = x.size() + 1;
+								System.out.println(x);
 							}
 							catch(Exception e){
 								System.err.println (e.getMessage());
