@@ -412,7 +412,7 @@ public class MechanicShop{
 
 		// output all clients that match user's input
 		try{
-			String getLName = "SELECT id, fname, lname FROM CUSTOMER WHERE lname = " + userInput + ";" ;
+			String getLName = "SELECT id, fname, lname FROM CUSTOMER WHERE lname = '" + userInput + "';" ;
 			esql.executeQueryAndPrintResult(getLName);
 		}
 		catch (Exception e){
