@@ -582,6 +582,17 @@ public class MechanicShop{
 								qs = String.format("SELECT s.rid FROM Service_request s");
 								x = esql.executeQueryAndReturnResult(qs);
 								setRid = x.size() + 1;
+							}
+							catch(Exception e){
+								System.err.println (e.getMessage());
+							}
+
+							try{
+								String qs;
+								List<List<String>> x;
+								int setRid;
+								qs = String.format("SELECT c.vin FROM Owns o WHERE o.ownership_id = '" + ownID + "';");
+								x = esql.executeQueryAndReturnResult(qs);
 								System.out.println(x);
 							}
 							catch(Exception e){
