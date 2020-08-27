@@ -619,7 +619,7 @@ public class MechanicShop{
 								String comp = "";
 								 try{
 									System.out.print("Enter complaint: ");
-									comp = scnr.next();
+									//comp = scnr.next();
 									if(comp.length() >= 1000){
 										throw new Exception("Too long.");
 									}
