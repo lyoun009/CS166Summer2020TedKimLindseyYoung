@@ -317,26 +317,55 @@ public class MechanicShop{
 			qs = String.format("SELECT C.id FROM Customer C");
 			x = esql.executeQueryAndReturnResult(qs);
 			c_id = x.size() + 1;
-
-			Scanner fnO = new Scanner(System.in);
-			System.out.println("Enter customer's first name: ");
-			String tfN = fnO.nextLine();
-			if (tfN.length() > 32) {
-				throw new Exception("First name cannot exceed 32 characters.");
+			while(true) {
+				try { 
+					Scanner fnO = new Scanner(System.in);
+					System.out.println("Enter customer's first name: ");
+					String tfN = fnO.nextLine();
+					if (tfN.length() > 32) {
+						throw new Exception("First name cannot exceed 32 characters.");
+					}
+					else if (tfN.length() <= 0) {
+						throw new Exceptio("First name cannot be null.")
+					}
+				}
+				catch (Exception exc) {
+					System.err.println(exc.getMessage());
+				}
 			}
 
-			Scanner lnO = new Scanner(System.in);
-			System.out.println("Enter customer's last name: ");
-			String tlN = lnO.nextLine();
-			if (tlN.length() > 32) {
-				throw new Exception("Last name cannot exceed 32 characters.");
+			while(true) {
+				try { 
+					Scanner lnO = new Scanner(System.in);
+					System.out.println("Enter customer's last name: ");
+					String tlN = lnO.nextLine();
+					if (tlN.length() > 32) {
+						throw new Exception("Last name cannot exceed 32 characters.");
+					}
+					else if (tlN.length() <= 0) {
+						throw new Exceptio("Last name cannot be null.")
+					}
+				}
+				catch (Exception exc) {
+					System.err.println(exc.getMessage());
+				}
 			}
 
-			Scanner pnO = new Scanner(System.in);
-			System.out.println("Enter customer's phone number: ");
-			String tpN = pnO.nextLine();
-			if (tpN.length() > 10) {
-				throw new Exception("Phone number cannot exceed 10 characters.");
+			while(true) {
+				try { 
+					Scanner pnO = new Scanner(System.in);
+					System.out.println("Enter customer's phone number: ");
+					String tpN = pnO.nextLine();
+					if (tpN.length() > 10) {
+						throw new Exception("Phone number cannot exceed 10 characters.");
+					}
+					else if (tpN.length() <= 0) {
+						throw new Exceptio("Phone number cannot be null.")
+					}
+				}
+				catch (Exception exc) {
+					System.err.println(exc.getMessage());
+				}
 			}
 
 			Scanner aO = new Scanner(System.in);
