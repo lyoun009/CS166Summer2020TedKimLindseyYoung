@@ -387,8 +387,6 @@ public class MechanicShop{
 					System.out.println("Please try again.");
 				}
 			}
-			
-			
 			// Putting values into database: 
 			try{
 				System.out.println("\nAdding new mechanic to database:");
@@ -397,16 +395,12 @@ public class MechanicShop{
 				// This will output the newly entered data:
 				String test = "SELECT * FROM MECHANIC WHERE id = '" + mechID + "';" ;
 				esql.executeQueryAndPrintResult(test);
-				System.out.println("Done adding mechanic. Returning to MAIN MENU...");
+				System.out.println("Done adding mechanic. Returning to MAIN MENU...\n");
 				
 			}
 			catch (Exception e){
 				System.err.println (e.getMessage());
 			}
-				
-
-		
-
 
 	}
 	
@@ -445,16 +439,15 @@ public class MechanicShop{
 					throw new Exception("Invalid input. Must be a valid year.");
 				}
 				
-				
 				// input values into db
-				System.out.println("\n Adding new car to database:");
+				System.out.println("\nAdding new car to database:");
 				esql.executeUpdate("INSERT INTO CAR (vin, make, model, year) VALUES ('" 
 				+ carVin + "', '" + carMake + "', '" + carModel + "', " + carYear + ");"  );
 
 				//show that values are in db
 				String test = "SELECT * FROM CAR WHERE vin = '" + carVin + "';" ;
 				esql.executeQueryAndPrintResult(test);
-				System.out.println("Done adding car. Returning to MAIN MENU...");
+				System.out.println("Done adding car. Returning to MAIN MENU...\n");
 				break;
 			}
 			catch(Exception e){
@@ -586,6 +579,7 @@ public class MechanicShop{
 							// getting complaint 	
 								String comp = "";
 								System.out.print("Enter complaint: ");
+								scnr.nextLine();
 								comp = scnr.nextLine();
 								if(comp.length() >= 10000){
 									throw new Exception("Too long.");
@@ -678,16 +672,13 @@ public class MechanicShop{
 		k = scnr.nextInt();
 
 		String sqlCmd = "SELECT cc.make, cc.model, COUNT(*) AS num_serv_requests FROM CAR cc, Service_request s WHERE cc.vin = s.car_vin GROUP BY cc.vin ORDER BY num_serv_requests desc LIMIT " + k + ";" ;
-		
-	
+
 		try{
 			esql.executeQueryAndPrintResult(sqlCmd);
 		}
 		catch (Exception e){
 			System.err.println (e.getMessage());
 		}
-		
-	
 	}
 	
 	public static void ListCustomersInDescendingOrderOfTheirTotalBill(MechanicShop esql){// 10 Lindsey
@@ -706,8 +697,5 @@ public class MechanicShop{
 		catch (Exception e){
 			System.err.println (e.getMessage());
 		}
-
-		
 	}
-	
 }
