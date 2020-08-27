@@ -315,9 +315,7 @@ public class MechanicShop{
 		// has basic adding to db functionality
 		// still need to implement checking valid parameters part 
 		// aka error handling if wrong input
-		boolean keepAsking = true;
-
-		while(keepAsking) {
+		
 			String mechFirstName;
 			String mechLastName;
 			int mechID;
@@ -326,42 +324,45 @@ public class MechanicShop{
 			// Reading in input using Scanner
 			Scanner scnr = new Scanner(System.in);
 
-			System.out.print("Enter the mechanic first name: ");
-			mechFirstName = scnr.nextLine();
+			while(true){
+				try{
+					System.out.print("Enter the mechanic first name: ");
+					mechFirstName = scnr.nextLine();
+					if(mechFirstName.length() > 32){
+						throw new Exception("First name cannot exceed 32 characters.");
+					}
+					break;
+				}
+				catch(Exception ex){
+					System.out.println(ex.getMessage());
+					System.out.println("Try again.");
+				}
+
+			}
+
+
 			System.out.print("Enter the mechanic last name: ");
 			mechLastName = scnr.nextLine();
 			System.out.print("Enter the mechanic id: ");
 			mechID = scnr.nextInt();
 			System.out.print("Enter the mechanic's years of experience: ");
 			mechExp = scnr.nextInt();
-
-			//	Testing code to make sure it is reading in input correctly:
-			// System.out.println("First name: " + mechFirstName);
-			// System.out.println("Last name: " + mechLastName);
-			// System.out.println("Mechanic ID: " + mechID);
-			// System.out.println("Years experience: " + mechExp);
 			
 			// Putting values into database: 
 			try{
 				esql.executeUpdate("INSERT INTO MECHANIC (id, fname, lname, experience) VALUES (" 
 				+ mechID + ", '" + mechFirstName + "', '" + mechLastName + "', " + mechExp + ");"  );
+				// This will output the newly entered data:
 				String test = "SELECT * FROM MECHANIC WHERE id = '" + mechID + "';" ;
 				esql.executeQueryAndPrintResult(test);
-				break;
+				
 			}
 			catch (Exception e){
 				System.err.println (e.getMessage());
 			}
 				
-			
-			// Check if values got inputted into DB
-			// try{
-				
-			// }
-			// catch (Exception e){
-			// 	System.err.println (e.getMessage());
-			// }
-		}
+
+		
 
 
 	}
@@ -373,6 +374,7 @@ public class MechanicShop{
 		int carYear; 
 		
 		// Reading in input using Scanner
+		boolean keepAsking = true;
 		Scanner scnr = new Scanner(System.in);
 
 		System.out.print("Enter the car vin: ");
@@ -420,7 +422,7 @@ public class MechanicShop{
 		try{
 			String check = "SELECT * FROM CUSTOMER WHERE lname= '" + userInput + "';" ;
 			test = esql.executeQuery(check);
-			System.out.println("Test val: " + test); // for testing, comment out later
+			//System.out.println("Test val: " + test); // for testing, comment out later
 			// if test is 1, means that record exists. 0 means doesnt exist in table
 		}
 		catch (Exception e){
