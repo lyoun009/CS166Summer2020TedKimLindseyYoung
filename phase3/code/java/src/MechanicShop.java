@@ -308,7 +308,7 @@ public class MechanicShop{
 	}//end readChoice
 	
 	public static void AddCustomer(MechanicShop esql){//1  Ted
-		try {
+		//try {
 			String qs;
 			List<List<String>> x;
 			int c_id;
@@ -378,10 +378,10 @@ public class MechanicShop{
 			String sq;
 			sq = String.format("INSERT INTO Customer(id, fname, lname, phone, address) VALUES(%d, '%s', '%s', '%s', '%s')", c_id, tfN, tlN, tpN, ta);
 			esql.executeUpdate(sq);
-		}
-		catch(Exception exc) {
-			System.err.println(exc.getMessage());
-		}
+		//}
+		// catch(Exception exc) {
+		// 	System.err.println(exc.getMessage());
+		// }
 
 	}
 	
