@@ -1,4 +1,5 @@
 # CS166-B22-Summer2020
+Note: Template code for create.sql, and MechanicShop.java as well as .csv data files to test code was provided by the University of California, Riverside.
 
 # Phase 3 Compaliation Instruction
 
